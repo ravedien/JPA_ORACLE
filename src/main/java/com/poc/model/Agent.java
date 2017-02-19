@@ -2,6 +2,7 @@ package com.poc.model;
 
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,10 +30,10 @@ public class Agent {
 	@Column(name="AGENT_CD")
 	private String agentCode;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumns({
-		@JoinColumn(name="AGENT_ID", referencedColumnName="AGENT_ID"),
-        @JoinColumn(name="AGENT_START_DTTM", referencedColumnName="START_DTTM")
+		@JoinColumn(name="AGENT_AGENT_ID", referencedColumnName="AGENT_ID"),
+                @JoinColumn(name="AGENT_START_DTTM", referencedColumnName="START_DTTM")
 	})
 	private Set<AgentLicense> agentLicenses;
 	
@@ -83,7 +84,7 @@ public class Agent {
 	@Override
 	public String toString() {
 		return "Agent [agentId=" + agentId + ", startDateTime=" + startDateTime + ", agentCode=" + agentCode
-				+ ", agentLicenses=" + agentLicenses + ", endDateTime=" + endDateTime + "]";
+				+ ", endDateTime=" + endDateTime + "]";
 	}
 
 }

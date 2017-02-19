@@ -16,6 +16,11 @@ public class AgentPK implements Serializable{
 	private Date startDateTime;
 	
 	public AgentPK() {}
+
+        public AgentPK(Integer agentId, Date startDateTime) {
+            this.agentId = agentId;
+            this.startDateTime = startDateTime;
+        }
 	
 	public Integer getAgentId() {
 		return agentId;

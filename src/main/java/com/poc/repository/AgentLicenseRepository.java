@@ -5,10 +5,9 @@
  */
 package com.poc.repository;
 
-import com.poc.model.Agent;
-import com.poc.model.AgentLicense;
-import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.poc.model.AgentLicense;
 
 /**
  *

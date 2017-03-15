@@ -46,11 +46,13 @@ public class AgentRepositoryTest {
     @Test
     public void save() throws ParseException {
 
-        Agent agent = new Agent(new AgentPK(2, new Date()));
-        agent.setAgentCode("2");
-        AgentLicense license = new AgentLicense();
-        license.setAgentLicenseId(69);
-        agent.addAgentLicense(license);
+        Agent agent = new Agent(new AgentPK(3, new Date()));
+        agent.setAgentCode("3");
+//        agent.setEndDateTime(new Date());
+//        AgentLicense license = new AgentLicense();
+//        license.setAgent(agent);
+//        license.setAgentLicenseId(69);
+//        agent.addAgentLicense(license);
         
         agentDao.create(agent);
         

@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -62,4 +65,29 @@ public abstract class AbstractJpaDAOImpl<T extends Serializable, PK extends Seri
         return getBuilder().createQuery(clazz);
 	}
     
+    @Override
+    public List<T> findWithNamedQuery(String named, Map<String,Object> params){
+    	TypedQuery<T> query = entityManager.createNamedQuery(named, clazz);
+    	if (params != null && !params.isEmpty()) {
+            for (Map.Entry<String, Object> entrySet : params.entrySet()) {
+                query.setParameter(entrySet.getKey(), entrySet.getValue());
+            }
+        }
+
+        return query.getResultList();
+    	
+    }
+    
+    @Override
+    public void executeWithNamedQuery(String named, Map<String, Object> params) {
+        Query q = entityManager.createNamedQuery(named);
+
+        if (params != null && !params.isEmpty()) {
+            for (Map.Entry<String, Object> entrySet : params.entrySet()) {
+                q.setParameter(entrySet.getKey(), entrySet.getValue());
+            }
+        }
+
+        q.executeUpdate();
+    }
 }

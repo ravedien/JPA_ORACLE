@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -21,18 +22,18 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "AGENT")
-@NamedQuery(name= Agent.QUERY_FIND_AGENTPK, 
-query="SELECT a FROM Agent a JOIN FETCH a.agentLicenses al where a.agentId = :"+Agent.PARAM_AGENT_ID+ " and a.startDateTime = :"+Agent.PARAM_START_DATE_TIME)
-@NamedEntityGraph(name="GRAPH_AGENT_LICENSES",
-attributeNodes = @NamedAttributeNode(value="agentLicenses")
-)
+//@NamedQuery(name= Agent.QUERY_FIND_AGENTPK, 
+//query="SELECT a FROM Agent a JOIN FETCH a.agentLicenses al where a.agentId = :"+Agent.PARAM_AGENT_ID+ " and a.startDateTime = :"+Agent.PARAM_START_DATE_TIME)
+//@NamedEntityGraph(name="GRAPH_AGENT_LICENSES",
+//attributeNodes = @NamedAttributeNode(value="agentLicenses")
+//)
 public class Agent implements Serializable{
 
-	public static final String QUERY_FIND_AGENTPK="Agent.findById";
-	public static final String PARAM_AGENT_ID="agentId";
-	public static final String PARAM_START_DATE_TIME="startDateTime";
-	
-	public static final String GRAPH_AGENT_LICENSES = "graph.Agent.licenses";
+//	public static final String QUERY_FIND_AGENTPK="Agent.findById";
+//	public static final String PARAM_AGENT_ID="agentId";
+//	public static final String PARAM_START_DATE_TIME="startDateTime";
+//	
+//	public static final String GRAPH_AGENT_LICENSES = "graph.Agent.licenses";
 	
 	/**
 	 * 
@@ -84,7 +85,7 @@ public class Agent implements Serializable{
 		this.agentCode = agentCode;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agent")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agent",cascade=CascadeType.ALL)
 	public Set<AgentLicense> getAgentLicenses() {
 		return agentLicenses;
 	}

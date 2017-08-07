@@ -12,15 +12,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AGENT_LICENSE")
-public class AgentLicense implements Serializable{
+@Table(name = "AGENT_LICENSE")
+public class AgentLicense implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 160280185401633177L;
 
-	
 	private Integer agentLicenseId;
 	private Agent agent;
 
@@ -36,7 +35,7 @@ public class AgentLicense implements Serializable{
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumns({ @JoinColumn(name = "AGENT_ID", referencedColumnName = "AGENT_ID"),
-		@JoinColumn(name = "AGENT_START_DTTM", referencedColumnName = "START_DTTM") })
+			@JoinColumn(name = "AGENT_START_DTTM", referencedColumnName = "START_DTTM") })
 	public Agent getAgent() {
 		return agent;
 	}
@@ -49,5 +48,5 @@ public class AgentLicense implements Serializable{
 	public String toString() {
 		return "AgentLicense [agentLicenseId=" + agentLicenseId + ", agent=" + agent + "]";
 	}
-	
+
 }

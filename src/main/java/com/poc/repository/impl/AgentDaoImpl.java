@@ -7,6 +7,6 @@ import com.poc.model.AgentPK;
 import com.poc.repository.AgentDao;
 
 @Repository
-public class AgentDaoImpl extends AbstractJpaDAOImpl<Agent,AgentPK> implements AgentDao{
+public class AgentDaoImpl extends AbstractJpaDAOImpl<Agent, AgentPK> implements AgentDao {
 
 }

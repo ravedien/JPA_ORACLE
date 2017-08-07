@@ -22,19 +22,21 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "AGENT")
-//@NamedQuery(name= Agent.QUERY_FIND_AGENTPK, 
-//query="SELECT a FROM Agent a JOIN FETCH a.agentLicenses al where a.agentId = :"+Agent.PARAM_AGENT_ID+ " and a.startDateTime = :"+Agent.PARAM_START_DATE_TIME)
-//@NamedEntityGraph(name="GRAPH_AGENT_LICENSES",
-//attributeNodes = @NamedAttributeNode(value="agentLicenses")
-//)
-public class Agent implements Serializable{
+// @NamedQuery(name= Agent.QUERY_FIND_AGENTPK,
+// query="SELECT a FROM Agent a JOIN FETCH a.agentLicenses al where a.agentId =
+// :"+Agent.PARAM_AGENT_ID+ " and a.startDateTime =
+// :"+Agent.PARAM_START_DATE_TIME)
+// @NamedEntityGraph(name="GRAPH_AGENT_LICENSES",
+// attributeNodes = @NamedAttributeNode(value="agentLicenses")
+// )
+public class Agent implements Serializable {
 
-//	public static final String QUERY_FIND_AGENTPK="Agent.findById";
-//	public static final String PARAM_AGENT_ID="agentId";
-//	public static final String PARAM_START_DATE_TIME="startDateTime";
-//	
-//	public static final String GRAPH_AGENT_LICENSES = "graph.Agent.licenses";
-	
+	// public static final String QUERY_FIND_AGENTPK="Agent.findById";
+	// public static final String PARAM_AGENT_ID="agentId";
+	// public static final String PARAM_START_DATE_TIME="startDateTime";
+	//
+	// public static final String GRAPH_AGENT_LICENSES = "graph.Agent.licenses";
+
 	/**
 	 * 
 	 */
@@ -54,9 +56,8 @@ public class Agent implements Serializable{
 	}
 
 	@EmbeddedId
-	@AttributeOverrides({
-		@AttributeOverride(name = "agentId", column = @Column(name = "AGENT_ID", nullable = false)),
-		@AttributeOverride(name = "startDateTime", column = @Column(name = "START_DTTM", nullable = false)) })
+	@AttributeOverrides({ @AttributeOverride(name = "agentId", column = @Column(name = "AGENT_ID", nullable = false)),
+			@AttributeOverride(name = "startDateTime", column = @Column(name = "START_DTTM", nullable = false)) })
 	public AgentPK getAgentPK() {
 		return agentPK;
 	}
@@ -65,7 +66,6 @@ public class Agent implements Serializable{
 		this.agentPK = agentPK;
 	}
 
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "END_DTTM")
 	public Date getEndDateTime() {
@@ -85,7 +85,7 @@ public class Agent implements Serializable{
 		this.agentCode = agentCode;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agent",cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "agent", cascade = CascadeType.ALL)
 	public Set<AgentLicense> getAgentLicenses() {
 		return agentLicenses;
 	}
@@ -93,8 +93,8 @@ public class Agent implements Serializable{
 	public void setAgentLicenses(Set<AgentLicense> agentLicenses) {
 		this.agentLicenses = agentLicenses;
 	}
-	
-	public void addAgentLicense(AgentLicense license){
+
+	public void addAgentLicense(AgentLicense license) {
 		this.agentLicenses.add(license);
 	}
 
